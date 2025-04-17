@@ -18,7 +18,8 @@ const startBtn = document.querySelector("#start");
 
 const inputElement = document.querySelector('.max');
     
-inputElement.value = answ.length;
+// inputElement.value = answ.length;
+inputElement.value = 164;
 console.log(answ)
 
 startBtn.addEventListener('click', () => {
