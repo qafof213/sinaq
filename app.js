@@ -18,7 +18,7 @@ const startBtn = document.querySelector("#start");
 
 const inputElement = document.querySelector('.max');
     
-inputElement.value = answ.length-1;
+inputElement.value = answ.length;
 
 console.log(answ)
 
@@ -91,7 +91,7 @@ function randomNumber() {
         
     }
 
-    return res1;
+    return res;
 }
 
 // Other functions and event listeners go here...
