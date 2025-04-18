@@ -18,8 +18,8 @@ const startBtn = document.querySelector("#start");
 
 const inputElement = document.querySelector('.max');
     
-// inputElement.value = answ.length;
-inputElement.value = 164;
+inputElement.value = answ.length-1;
+
 console.log(answ)
 
 startBtn.addEventListener('click', () => {
@@ -75,15 +75,23 @@ function randomNumber() {
     let finish = parseFloat(inputMax.value);
     let count_question = parseFloat(inputCount.value);
     let res = [];
+    // this is for unsorted
+    let count=start-1;
+    let res1=[];
+    console.log('sicdiq',res1)
 
     while (res.length < count_question) {
         let rand = Math.floor(Math.random() * (finish - start + 1)) + start;
         if (!res.includes(rand)) {
             res.push(rand);
         }
+        
+        res1.push(count)
+        count++
+        
     }
 
-    return res;
+    return res1;
 }
 
 // Other functions and event listeners go here...
@@ -380,6 +388,5 @@ function showAllQuestions(incorrect_answers) {
         questionsContainer.appendChild(questionContainerElement);
     }
 }
-
 
 
