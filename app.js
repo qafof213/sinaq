@@ -92,7 +92,7 @@ function randomNumber() {
         
     }
 
-    return seq;
+    return res;
 }
 
 // Other functions and event listeners go here...
