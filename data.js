@@ -1,17 +1,11 @@
 
 async function tmp(){
     let data =await fetch('./question.txt');
+    
     data=await data.text();
     return data
 }
-
-
     let test = await tmp();
-    test = test.replace(/A\)/g, ' •')
-               .replace(/B\)/g, ' •')
-               .replace(/C\)/g, ' •')
-               .replace(/D\)/g, ' •')
-               .replace(/E\)/g, ' •');
     let true_false = [];
     let arr = test.split('\n').filter(line => line.trim());
     let questions = [];
@@ -55,35 +49,26 @@ async function tmp(){
 
     // Extract answers and true/false
     i = 0;
-
-
-while (i < arr.length) {
-    let line = arr[i];
-    if (line.includes('√') || line.includes('•')) {
-        true_false.push(line.includes('√'));
-        let answer = line;
-        i++;
-        while (i < arr.length && !arr[i].match(/^\d+\./) && !arr[i].includes('√') && !arr[i].includes('•')) {
-            answer += ' ' + arr[i];
+    let c=0
+    while (i < arr.length) {
+        let line = arr[i];
+        if (line.includes('√') || line.includes('•')) {
+            true_false.push(line.includes('√'));
+            let answer = line;
             i++;
+            while (i < arr.length && (!questions.includes(arr[i])) && !arr[i].includes('√') && !arr[i].includes('•')) {
+                answer += ' ' + arr[i];
+                i++;
+                
+            }
+            answers.push(answer.slice(2));
+            
+            
+        } else {
+            i++;
+            
         }
-        if (line.includes('•')) {
-            answers.push(answer.slice(answer.indexOf('•') + 1));
-        }
-        if (line.includes('√')) {
-            answers.push(answer.slice(answer.indexOf('√') + 1));
-        }
-    } else {
-        // If the current line doesn't include '√' or '•', add it to the previous answer
-        if (answers.length > 0) {
-            answers[answers.length - 1] += ' ' + line;
-        }
-        i++;
     }
-}
-
-// console.log(true_false);
-// console.log(answers[0]);
 
     let count_answers = countAnswers(arr);
     let cumulative_counts = Array.from({ length: count_answers.length + 1 }, (_, i) => count_answers.slice(0, i).reduce((acc, val) => acc + val, 0));
@@ -112,9 +97,10 @@ while (i < arr.length) {
 
 
 
+
 async function tmp1() {
     try {
-        let response = await fetch("./output_imagess");
+        let response = await fetch("./output_images");
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -143,6 +129,7 @@ async function main(res) {
     }
     image_question.push(res);
 }
+console.log(image_question)
 
 for (var j = 0; j < res.length; j++) {
     main(res[j]);
